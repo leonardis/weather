@@ -16,8 +16,8 @@ class WeatherViewModel(
     fun getCurrentWeather(location: Location) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = repository.getTodayWeather(location.coordinates)
-                Log.e(this@WeatherViewModel.javaClass.simpleName, response.toString())
+                //val response = repository.getTodayWeather(location.coordinates)
+                //Log.e(this@WeatherViewModel.javaClass.simpleName, response.toString())
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }
