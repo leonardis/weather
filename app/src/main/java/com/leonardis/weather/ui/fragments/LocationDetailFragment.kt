@@ -14,6 +14,9 @@ import com.leonardis.weather.adapters.ForecastAdapter
 import com.leonardis.weather.adapters.LocationsAdapter
 import com.leonardis.weather.models.Forecast
 import com.leonardis.weather.utils.DAY_MONTH
+import com.leonardis.weather.utils.METRIC_UNITS
+import com.leonardis.weather.utils.SharedPreferencesUtils
+import com.leonardis.weather.utils.UNITS
 import com.leonardis.weather.utils.convertDate
 import com.leonardis.weather.viewmodels.ForecastViewModel
 import kotlinx.android.synthetic.main.fragment_location_detail.date
@@ -43,7 +46,7 @@ class LocationDetailFragment : BaseFragment() {
 
         try {
             viewModel.weather = locationArgs.location
-            viewModel.getForecast()
+            viewModel.getForecast(SharedPreferencesUtils.getStringData(requireContext(), UNITS, METRIC_UNITS))
         } catch (exception: Exception) {
             exception.printStackTrace()
             showError()
@@ -55,7 +58,7 @@ class LocationDetailFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getForecast()
+        viewModel.getForecast(SharedPreferencesUtils.getStringData(requireContext(), UNITS, METRIC_UNITS))
         updateUI()
         subscribe()
     }

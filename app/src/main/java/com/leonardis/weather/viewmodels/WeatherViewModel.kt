@@ -23,25 +23,25 @@ class WeatherViewModel: ViewModel() {
     private val _favoriteWeatherData: MutableLiveData<List<WeatherResponse>> = MutableLiveData()
     val favoriteWeatherData: LiveData<List<WeatherResponse>> = _favoriteWeatherData
 
-    fun getSuggestedData(suggestedLocations: List<Coordinates>) {
+    fun getSuggestedData(suggestedLocations: List<Coordinates>, unit: String) {
         val items: MutableList<WeatherResponse> = mutableListOf()
 
         viewModelScope.launch(Dispatchers.IO) {
             suggestedLocations.forEach {
-                items.add(repository.getTodayWeather(it))
+                items.add(repository.getTodayWeather(it, unit))
             }
 
             _suggestedWeatherData.postValue(items)
         }
     }
 
-    fun getFavoritesData(favoritesLocations: List<Coordinates?>) {
+    fun getFavoritesData(favoritesLocations: List<Coordinates?>, unit: String) {
         val items: MutableList<WeatherResponse> = mutableListOf()
 
         viewModelScope.launch(Dispatchers.IO) {
             favoritesLocations.forEach {
                 it?.let {
-                    items.add(repository.getTodayWeather(it))
+                    items.add(repository.getTodayWeather(it, unit))
                 }
             }
 

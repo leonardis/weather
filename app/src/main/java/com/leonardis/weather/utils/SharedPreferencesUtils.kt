@@ -23,11 +23,11 @@ object SharedPreferencesUtils {
         ).getInt(key, 0)
     }
 
-    fun getStringData(context: Context, key: String): String {
+    fun getStringData(context: Context, key: String, defValue: String = ""): String {
         return context.getSharedPreferences(
             PREF_APP,
             Context.MODE_PRIVATE
-        ).getString(key, "").toString()
+        ).getString(key, defValue).toString()
     }
 
     fun saveData(

@@ -19,11 +19,10 @@ class ForecastViewModel: ViewModel() {
     private val _forecastData: MutableLiveData<ForecastResponse> = MutableLiveData()
     val forecastData: LiveData<ForecastResponse> = _forecastData
 
-    fun getForecast() {
-
+    fun getForecast(unit: String) {
         viewModelScope.launch(Dispatchers.IO) {
             weather?.coordinates?.let {
-                _forecastData.postValue(repository.getForecast(it))
+                _forecastData.postValue(repository.getForecast(it, unit))
             }
         }
     }

@@ -11,6 +11,8 @@
     <string name="min">min</string>
     <string name="temperature">%d°</string>
     <string name="feels_like">Feels like %d°</string>
+    <string name="about">About</string>
+    <string name="change_units">Change metric unit</string>
 
     <string-array name="suggestedLatitude">
         <item>40.730610</item><!-- New York -->

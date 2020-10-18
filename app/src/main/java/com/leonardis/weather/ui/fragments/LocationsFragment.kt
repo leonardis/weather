@@ -20,7 +20,9 @@ import com.leonardis.weather.models.Coordinates
 import com.leonardis.weather.models.WeatherResponse
 import com.leonardis.weather.ui.MainActivity
 import com.leonardis.weather.utils.CurrentLocation
+import com.leonardis.weather.utils.METRIC_UNITS
 import com.leonardis.weather.utils.SharedPreferencesUtils
+import com.leonardis.weather.utils.UNITS
 import com.leonardis.weather.utils.permissionIsGranted
 import com.leonardis.weather.viewmodels.WeatherViewModel
 import kotlinx.android.synthetic.main.fragment_locations.rv_favorites
@@ -56,7 +58,7 @@ class LocationsFragment : BaseFragment() {
         super.onResume()
         requestCurrentLocation()
         showBottomNavBar(true)
-        viewModel.getFavoritesData(getFavorites())
+        viewModel.getFavoritesData(getFavorites(), SharedPreferencesUtils.getStringData(requireContext(), UNITS, METRIC_UNITS))
         subscribe()
     }
 
@@ -87,7 +89,7 @@ class LocationsFragment : BaseFragment() {
         task.addOnSuccessListener { location ->
             if (location != null) {
                 CurrentLocation.location = location
-                viewModel.getSuggestedData(getSuggestedCoordinates())
+                viewModel.getSuggestedData(getSuggestedCoordinates(), SharedPreferencesUtils.getStringData(requireContext(), UNITS, METRIC_UNITS))
             }
         }
     }

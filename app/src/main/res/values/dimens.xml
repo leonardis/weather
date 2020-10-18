@@ -5,4 +5,5 @@
     <dimen name="spacing_xlarge">18dp</dimen>
     <dimen name="spacing_xxlarge">21dp</dimen>
     <dimen name="cardView_locationSize">210dp</dimen>
+    <dimen name="cardView_locationHeight">180dp</dimen>
 </resources>
