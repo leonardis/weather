@@ -102,7 +102,17 @@ object SharedPreferencesUtils {
     fun removeFavorite(context: Context, item: WeatherResponse) {
         val items: MutableList<WeatherResponse> = getFavorites(context).toMutableList()
         val favorites: MutableList<WeatherResponse> = mutableListOf<WeatherResponse>().apply {
-            items.remove(item)
+            var position: Int = -1
+            items.filterIndexed { index, weatherResponse ->
+                position = index
+                weatherResponse.coordinates?.latitude == item.coordinates?.latitude &&
+                        weatherResponse.coordinates?.longitude == item.coordinates?.longitude
+            }
+            if (items.size > 1) {
+                items.removeAt(position - 1)
+            } else {
+                items.removeAt(0)
+            }
             addAll(items)
         }
         saveFavorites(context, favorites)

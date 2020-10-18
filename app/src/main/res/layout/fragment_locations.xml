@@ -18,23 +18,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/day"
+    <ProgressBar
+        android:id="@+id/progressBar_suggested"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_normal"
-        android:text="27 march, Monday"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:fontFamily="sans-serif"
         app:layout_constraintTop_toBottomOf="@+id/greatings"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_weather"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_xxlarge"
-        app:layout_constraintTop_toBottomOf="@+id/day"
+        app:layout_constraintTop_toBottomOf="@+id/greatings"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         tools:listitem="@layout/item_full_weather_view" />
 
@@ -43,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55"/>
+        app:layout_constraintGuide_percent="0.5"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/favorites"
@@ -66,5 +64,14 @@
         app:layout_constraintTop_toBottomOf="@+id/favorites"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_favorite_view" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/favorites"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.leonardis.weather.R
-import com.leonardis.weather.adapters.LocationsAdapter
 import com.leonardis.weather.utils.README_URL
 import kotlinx.android.synthetic.main.fragment_about.webView
 
 class AboutFragment : BaseFragment() {
-
-    private val weatherAdapter: LocationsAdapter = LocationsAdapter {}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

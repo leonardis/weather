@@ -13,6 +13,7 @@ import com.leonardis.weather.R
 import com.leonardis.weather.adapters.ForecastAdapter
 import com.leonardis.weather.adapters.LocationsAdapter
 import com.leonardis.weather.models.Forecast
+import com.leonardis.weather.ui.MainActivity
 import com.leonardis.weather.utils.DAY_MONTH
 import com.leonardis.weather.utils.METRIC_UNITS
 import com.leonardis.weather.utils.SharedPreferencesUtils
@@ -58,6 +59,7 @@ class LocationDetailFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        (requireActivity() as MainActivity).showBottomNavBar(false)
         viewModel.getForecast(SharedPreferencesUtils.getStringData(requireContext(), UNITS, METRIC_UNITS))
         updateUI()
         subscribe()

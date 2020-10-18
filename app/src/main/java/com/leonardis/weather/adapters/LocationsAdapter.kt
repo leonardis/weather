@@ -11,7 +11,8 @@ import com.leonardis.weather.models.WeatherResponse
 import com.leonardis.weather.utils.MainViewTypes
 
 class LocationsAdapter(
-    private val listener: (WeatherResponse) -> Unit
+    private val listener: (WeatherResponse) -> Unit,
+    private val deleteListener: (WeatherResponse) -> Unit
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val data: MutableList<WeatherResponse> = mutableListOf()
@@ -55,6 +56,7 @@ class LocationsAdapter(
     }
 
     fun deleteItem(item: WeatherResponse) {
+        deleteListener(item)
         data.remove(item)
         notifyDataSetChanged()
     }

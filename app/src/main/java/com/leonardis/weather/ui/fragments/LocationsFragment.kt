@@ -1,7 +1,6 @@
 package com.leonardis.weather.ui.fragments
 
 import android.Manifest
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,13 +17,15 @@ import com.leonardis.weather.R
 import com.leonardis.weather.adapters.LocationsAdapter
 import com.leonardis.weather.models.Coordinates
 import com.leonardis.weather.models.WeatherResponse
-import com.leonardis.weather.ui.MainActivity
 import com.leonardis.weather.utils.CurrentLocation
 import com.leonardis.weather.utils.METRIC_UNITS
 import com.leonardis.weather.utils.SharedPreferencesUtils
 import com.leonardis.weather.utils.UNITS
+import com.leonardis.weather.utils.hide
 import com.leonardis.weather.utils.permissionIsGranted
 import com.leonardis.weather.viewmodels.WeatherViewModel
+import kotlinx.android.synthetic.main.fragment_locations.progressBar_favorites
+import kotlinx.android.synthetic.main.fragment_locations.progressBar_suggested
 import kotlinx.android.synthetic.main.fragment_locations.rv_favorites
 import kotlinx.android.synthetic.main.fragment_locations.rv_weather
 
@@ -35,8 +36,13 @@ class LocationsFragment : BaseFragment() {
 
     private lateinit var fusedLocationProvider: FusedLocationProviderClient
 
-    private val weatherAdapter: LocationsAdapter = LocationsAdapter{ openLocation(it) }
-    private val favoritesAdapter: LocationsAdapter = LocationsAdapter{ openLocation(it) }
+    private val weatherAdapter: LocationsAdapter = LocationsAdapter({ openLocation(it) },{})
+    private val favoritesAdapter: LocationsAdapter = LocationsAdapter(
+        {
+            openLocation(it)
+        }, {
+            SharedPreferencesUtils.removeFavorite(requireContext(), it)
+        })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -117,10 +123,12 @@ class LocationsFragment : BaseFragment() {
 
     private fun subscribe() {
         viewModel.suggestedWeatherData.observe(viewLifecycleOwner, Observer {
+            progressBar_suggested.hide()
             weatherAdapter.setData(it)
         })
 
         viewModel.favoriteWeatherData.observe(viewLifecycleOwner, Observer {
+            progressBar_favorites.hide()
             favoritesAdapter.setData(it)
         })
     }
