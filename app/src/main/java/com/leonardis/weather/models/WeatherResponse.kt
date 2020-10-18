@@ -1,32 +1,38 @@
 package com.leonardis.weather.models
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class WeatherResponse(
     @SerializedName("base")
-    val base: String,
+    val base: String? = "",
     @SerializedName("clouds")
-    val clouds: Clouds,
+    val clouds: Clouds? = null,
     @SerializedName("cod")
-    val weatherCode: Int,
+    val weatherCode: Int? = -1,
     @SerializedName("coord")
-    val coordinates: Coordinates,
+    val coordinates: Coordinates? = null,
     @SerializedName("dt")
-    val dateTime: Int,
+    val dateTime: Long? = -1,
+    @SerializedName("dt_txt")
+    val date: String? = "",
     @SerializedName("id")
-    val id: Int,
+    val id: Int? = -1,
     @SerializedName("main")
-    val main: Main,
+    val main: Main? = null,
     @SerializedName("name")
-    val name: String,
+    val name: String? = "",
     @SerializedName("sys")
-    val country: Country,
+    val country: Country? = null,
     @SerializedName("timezone")
-    val timezone: Int,
+    val timezone: Int? = -1,
     @SerializedName("visibility")
-    val visibility: Int,
+    val visibility: Int? = -1,
     @SerializedName("weather")
-    val weather: List<Weather>,
+    val weather: List<Weather>? = emptyList(),
     @SerializedName("wind")
-    val wind: Wind
-)
+    val wind: Wind? = null,
+    var isFavorite: Boolean = false
+): Parcelable
 

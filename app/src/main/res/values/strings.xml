@@ -7,4 +7,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello">Hello!!!</string>
     <string name="yout_favorites">Your favorites</string>
+    <string name="today">Today</string>
+    <string name="min">min</string>
+    <string name="temperature">%d°</string>
+    <string name="feels_like">Feels like %d°</string>
+
+    <string-array name="suggestedLatitude">
+        <item>40.730610</item><!-- New York -->
+        <item>38.736946</item><!-- Lisbon -->
+    </string-array>
+
+
+    <string-array name="suggestedLongitude">
+        <item>-73.935242</item><!-- New York -->
+        <item>-9.142685</item><!-- Lisbon -->
+    </string-array>
 </resources>

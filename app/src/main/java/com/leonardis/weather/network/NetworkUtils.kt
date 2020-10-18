@@ -2,13 +2,15 @@ package com.leonardis.weather.network
 
 import android.net.Uri
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.leonardis.weather.BuildConfig
-import com.leonardis.weather.models.WeatherResponse
 import com.leonardis.weather.utils.APP_ID
 import com.leonardis.weather.utils.BASE_URL
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.io.StringReader
+import java.lang.reflect.Type
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLDecoder
@@ -29,6 +31,13 @@ fun HttpURLConnection.buildGETRequest(): HttpURLConnection {
         requestMethod = "GET"
         setRequestProperty("Content-Type", "application/json; utf-8")
         setRequestProperty("Accept", "application/json")
+        doOutput = true
+    }
+}
+
+fun HttpURLConnection.buildSimpleGETRequest(): HttpURLConnection {
+    return this.apply {
+        requestMethod = "GET"
         doOutput = true
     }
 }

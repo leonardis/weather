@@ -9,5 +9,34 @@
         android:id="@+id/locationsFragment"
         android:name="com.leonardis.weather.ui.fragments.LocationsFragment"
         android:label="fragment_locations"
-        tools:layout="@layout/fragment_locations" />
+        tools:layout="@layout/fragment_locations" >
+        <action
+            android:id="@+id/action_locationsFragment_to_locationDetailFragment"
+            app:destination="@id/locationDetailFragment" >
+            <argument
+                android:name="location"
+                app:argType="com.leonardis.weather.models.WeatherResponse" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/addLocationFragment"
+        android:name="com.leonardis.weather.ui.fragments.AddFragment"
+        android:label="AddFragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.leonardis.weather.ui.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
+
+    <fragment
+        android:id="@+id/locationDetailFragment"
+        android:name="com.leonardis.weather.ui.fragments.LocationDetailFragment"
+        android:label="LocationDetailFragment" >
+
+        <argument
+            android:name="location"
+            app:argType="com.leonardis.weather.models.WeatherResponse" />
+
+    </fragment>
 </navigation>

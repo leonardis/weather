@@ -1,15 +1,14 @@
 package com.leonardis.weather.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.fragment.NavHostFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.leonardis.weather.R
-import com.leonardis.weather.models.Coordinates
-import com.leonardis.weather.models.Location
-import com.leonardis.weather.repositories.ForecastRepository
-import com.leonardis.weather.viewmodels.WeatherViewModel
+import com.leonardis.weather.models.WeatherResponse
+import com.leonardis.weather.utils.SharedPreferencesUtils
+import com.leonardis.weather.utils.display
 import kotlinx.android.synthetic.main.activity_main.bottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +21,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.navigation_hostFragment) as NavHostFragment
-        NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.navController)
+        val navController = findNavController(R.id.navigation_hostFragment)
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+    }
+
+    fun showBottomNavBar(show: Boolean) {
+        bottomNavigationView.display(show)
+    }
+
+    fun showSnackBar(text: String, item: WeatherResponse) {
+        Snackbar
+            .make(bottomNavigationView, text, Snackbar.LENGTH_INDEFINITE)
+            .setAction(getString(R.string.add)) {
+                SharedPreferencesUtils.addFavorite(this, item)
+            }.show()
     }
 }

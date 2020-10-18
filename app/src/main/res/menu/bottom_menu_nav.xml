@@ -2,14 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/locations"
+    <item android:id="@+id/locationsFragment"
+        android:title="@string/locations"
         android:icon="@drawable/ic_location"/>
 
-    <item android:id="@+id/add"
+    <item android:id="@+id/addLocationFragment"
+        android:title="@string/add"
         android:icon="@drawable/ic_add"/>
 
 
-    <item android:id="@+id/settings"
+    <item android:id="@+id/settingsFragment"
+        android:title="@string/settings"
         android:icon="@drawable/ic_setting"/>
 
 

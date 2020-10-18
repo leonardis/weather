@@ -1,18 +1,27 @@
 package com.leonardis.weather.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Main(
     @SerializedName("feels_like")
     val feelsLike: Double,
+    @SerializedName("grnd_level")
+    val grndLevel: Int,
     @SerializedName("humidity")
     val humidity: Int,
     @SerializedName("pressure")
     val pressure: Int,
+    @SerializedName("sea_level")
+    val seaLevel: Int,
     @SerializedName("temp")
-    val temp: Int,
+    val temp: Double,
+    @SerializedName("temp_kf")
+    val tempKf: Double,
     @SerializedName("temp_max")
-    val tempMax: Int,
+    val tempMax: Double,
     @SerializedName("temp_min")
-    val tempMin: Int
-)
+    val tempMin: Double
+): Parcelable

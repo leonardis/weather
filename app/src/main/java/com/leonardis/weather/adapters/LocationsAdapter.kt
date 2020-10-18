@@ -7,11 +7,14 @@ import com.leonardis.weather.R
 import com.leonardis.weather.adapters.viewholders.FavoriteViewHolder
 import com.leonardis.weather.adapters.viewholders.WeatherViewHolder
 import com.leonardis.weather.models.Location
+import com.leonardis.weather.models.WeatherResponse
 import com.leonardis.weather.utils.MainViewTypes
 
-class LocationsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class LocationsAdapter(
+    private val listener: (WeatherResponse) -> Unit
+): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val data: MutableList<Location> = mutableListOf()
+    private val data: MutableList<WeatherResponse> = mutableListOf()
 
     override fun getItemCount(): Int = data.size
 
@@ -33,14 +36,17 @@ class LocationsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+        val item = data[position]
         if (viewHolder is WeatherViewHolder) {
-            viewHolder.bind(data[position])
+            viewHolder.bind(item)
         } else {
-            (viewHolder as FavoriteViewHolder).bind(data[position])
+            (viewHolder as FavoriteViewHolder).bind(item)
         }
+
+        viewHolder.itemView.setOnClickListener { listener(item) }
     }
 
-    fun setData(locations: List<Location>) {
+    fun setData(locations: List<WeatherResponse>) {
         data.clear()
         data.addAll(locations)
         notifyDataSetChanged()
