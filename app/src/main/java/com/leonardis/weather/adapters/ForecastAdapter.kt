@@ -4,13 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.leonardis.weather.R
-import com.leonardis.weather.adapters.viewholders.FavoriteViewHolder
 import com.leonardis.weather.adapters.viewholders.ForecastViewHolder
-import com.leonardis.weather.adapters.viewholders.WeatherViewHolder
 import com.leonardis.weather.models.Forecast
-import com.leonardis.weather.models.Location
-import com.leonardis.weather.models.WeatherResponse
-import com.leonardis.weather.utils.MainViewTypes
 
 class ForecastAdapter: RecyclerView.Adapter<ForecastViewHolder>() {
 

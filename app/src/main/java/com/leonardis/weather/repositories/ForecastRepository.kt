@@ -66,7 +66,6 @@ class ForecastRepository {
             val input: InputStream = connection.inputStream
             val myBitmap = BitmapFactory.decodeStream(input)
             myBitmap
-            //throw Exception("Cannot open the connection")
         }
     }
 }

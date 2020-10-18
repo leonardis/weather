@@ -31,7 +31,9 @@ class LocationsAdapter(
             MainViewTypes.WEATHER.ordinal -> WeatherViewHolder(LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_full_weather_view, parent, false))
             else -> FavoriteViewHolder(LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_favorite_view, parent, false))
+                .inflate(R.layout.item_favorite_view, parent, false)) {
+                deleteItem(it)
+            }
         }
     }
 
@@ -49,6 +51,11 @@ class LocationsAdapter(
     fun setData(locations: List<WeatherResponse>) {
         data.clear()
         data.addAll(locations)
+        notifyDataSetChanged()
+    }
+
+    fun deleteItem(item: WeatherResponse) {
+        data.remove(item)
         notifyDataSetChanged()
     }
 }

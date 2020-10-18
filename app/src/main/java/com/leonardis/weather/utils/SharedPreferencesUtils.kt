@@ -91,9 +91,10 @@ object SharedPreferencesUtils {
     }
 
     fun addFavorite(context: Context, item: WeatherResponse) {
+        val itemToAdd = item.copy(isFavorite = true)
         val favorites: MutableList<WeatherResponse> = mutableListOf<WeatherResponse>().apply {
             addAll(getFavorites(context))
-            add(item)
+            add(itemToAdd)
         }
         saveFavorites(context, favorites)
     }

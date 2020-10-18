@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showSnackBar(text: String, item: WeatherResponse) {
         Snackbar
-            .make(bottomNavigationView, text, Snackbar.LENGTH_INDEFINITE)
+            .make(bottomNavigationView, text, Snackbar.LENGTH_LONG)
             .setAction(getString(R.string.add)) {
                 SharedPreferencesUtils.addFavorite(this, item)
             }.show()

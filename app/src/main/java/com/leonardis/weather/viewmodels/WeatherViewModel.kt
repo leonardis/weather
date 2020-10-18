@@ -45,7 +45,7 @@ class WeatherViewModel: ViewModel() {
                 }
             }
 
-            _favoriteWeatherData.postValue(items)
+            _favoriteWeatherData.postValue(items.map { it.copy(isFavorite = true) })
         }
     }
 
